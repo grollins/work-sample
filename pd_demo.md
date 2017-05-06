@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-df = (pd.read_csv('pd_demo_files/cars.csv')
+df = (pd.read_csv('data/cars.csv')
         .sort_values(by='hp', ascending = False)
         .assign(fct_cyl=lambda x: pd.Categorical(x['cyl']))
         .reset_index())
@@ -150,7 +150,7 @@ sns.regplot(data=df, x='hp', y='qsec')
 
 
 
-![png](pd_demo_files/output_5_1.png)
+![png](figures/pd_demo1.png)
 
 
 
@@ -166,7 +166,7 @@ sns.pairplot(df, hue='fct_cyl', vars=['hp', 'qsec'])
 
 
 
-![png](pd_demo_files/output_6_1.png)
+![png](figures/pd_demo2.png)
 
 
 

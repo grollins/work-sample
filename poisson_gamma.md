@@ -20,7 +20,7 @@ In this example, suppose we have data on the number of times per month that user
 
 Plotting the data below, most users are relatively inactive, but there's a long tail of very active users. Most of the user time traces are plotted in gray, but a few examples are highlighted in teal.
 
-![](poisson_gamma_files/unnamed-chunk-3-1.png)
+![](figures/poisson_gamma1.png)
 
 Fitting model to data using RStan
 ---------------------------------
