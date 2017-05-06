@@ -1,0 +1,42 @@
+---
+title: "Tidyverse Demo"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+glimpse(mtcars)
+```
+
+```{r}
+df <- mtcars %>%
+    arrange(desc(hp)) %>%
+    mutate(id = seq(1:nrow(mtcars)),
+           fct_cyl = factor(cyl, levels = c(4, 6, 8)))
+head(df)
+```
+
+```{r}
+df %>%
+    group_by(cyl) %>%
+    summarize(N = n(),
+              mean(hp), median(hp),
+              mean(qsec), median(qsec))
+```
+
+```{r}
+ggplot(df, aes(hp, qsec)) +
+    geom_point() +
+    geom_smooth(method = "lm") +
+    ggthemes::theme_few()
+```
+
+```{r}
+ggplot(df, aes(hp, qsec, color = fct_cyl)) +
+    geom_point() +
+    ggthemes::theme_few()
+```
