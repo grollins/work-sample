@@ -7,6 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(DBI)
+# connect to local docker db
 db <- dbConnect(RMySQL::MySQL(), dbname = "test", "root",
                 Sys.getenv('DOCKER_MYSQL_PW'),
                 host = "127.0.0.1", port = 32770)
@@ -154,4 +155,3 @@ ggplot(df_from_query, aes(plan, activity, fill = plan)) +
     facet_wrap(~country) +
     ggthemes::theme_few()
 ```
-

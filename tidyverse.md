@@ -57,7 +57,7 @@ ggplot(df, aes(hp, qsec)) +
     ggthemes::theme_few()
 ```
 
-![](tidyverse_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](tidyverse_files/unnamed-chunk-4-1.png)
 
 ``` r
 ggplot(df, aes(hp, qsec, color = fct_cyl)) +
@@ -65,4 +65,4 @@ ggplot(df, aes(hp, qsec, color = fct_cyl)) +
     ggthemes::theme_few()
 ```
 
-![](tidyverse_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](tidyverse_files/unnamed-chunk-5-1.png)

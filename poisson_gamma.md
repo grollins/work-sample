@@ -20,7 +20,7 @@ In this example, suppose we have data on the number of times per month that user
 
 Plotting the data below, most users are relatively inactive, but there's a long tail of very active users. Most of the user time traces are plotted in gray, but a few examples are highlighted in teal.
 
-![](poisson_gamma_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](poisson_gamma_files/unnamed-chunk-3-1.png)
 
 Fitting model to data using RStan
 ---------------------------------
@@ -68,9 +68,9 @@ fit <- stan(file = 'poisson_gamma.stan', data = data,
 ```
 
     ## Inference for Stan model: poisson_gamma.
-    ## 1 chains, each with iter=1000; warmup=500; thin=1; 
+    ## 1 chains, each with iter=1000; warmup=500; thin=1;
     ## post-warmup draws per chain=500, total post-warmup draws=500.
-    ## 
+    ##
     ##            mean se_mean    sd  2.5%   25%   50%   75% 97.5% n_eff  Rhat
     ## alpha     1.522   0.003 0.061 1.410 1.483 1.518 1.557 1.658   500 1.000
     ## beta      0.020   0.000 0.001 0.019 0.020 0.020 0.021 0.022   500 1.004
@@ -78,10 +78,10 @@ fit <- stan(file = 'poisson_gamma.stan', data = data,
     ## lambda[2] 0.681   0.004 0.081 0.532 0.619 0.678 0.741 0.834   500 0.998
     ## lambda[3] 0.787   0.004 0.079 0.639 0.733 0.787 0.846 0.933   500 1.001
     ## lambda[4] 1.183   0.005 0.109 0.971 1.115 1.178 1.251 1.407   500 0.998
-    ## 
+    ##
     ## Samples were drawn using NUTS(diag_e) at Sat Jan 21 14:57:39 2017.
     ## For each parameter, n_eff is a crude measure of effective sample size,
-    ## and Rhat is the potential scale reduction factor on split chains (at 
+    ## and Rhat is the potential scale reduction factor on split chains (at
     ## convergence, Rhat=1).
 
 The true values used to generate the data were *α* = 1.5 and *β* = 0.02.

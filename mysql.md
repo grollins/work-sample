@@ -224,7 +224,7 @@ ggplot(df_from_query, aes(plan, activity, fill = plan)) +
     ggthemes::theme_few()
 ```
 
-![](mysql_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](mysql_files/unnamed-chunk-11-1.png)
 
 ``` r
 ggplot(df_from_query, aes(plan, activity, fill = plan)) +
@@ -233,4 +233,4 @@ ggplot(df_from_query, aes(plan, activity, fill = plan)) +
     ggthemes::theme_few()
 ```
 
-![](mysql_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](mysql_files/unnamed-chunk-12-1.png)
