@@ -6,4 +6,6 @@ Collection of data science work samples
 + `03_pd_demo.md` - like `02_tidyverse.md` but using python, pandas, and seaborn
 + `04_statsmodels.md` - linear regression in python using statsmodels
 + `05_scikit_learn.md` - comparing ML classifiers in python using scikit-learn
++ `06_lm.md` - linear regression in R using lm
++ `06_glm.md` - logistic regression in R using glm
 + `10_poisson-gamma.md` - fitting a statistical model to data using RStan
