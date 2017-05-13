@@ -1,0 +1,72 @@
+---
+title: "Linear regression in R using lm"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+md <- read.csv("MaterialDesign.csv", stringsAsFactors=FALSE)
+md500 <- md[6,]
+md700 <- md[8,]
+
+theme_gr <- function(base_size=12, base_family="") {
+    gray <- md500$grey
+    theme_bw(base_size = base_size, base_family = base_family) +
+        theme(
+            line = element_line(color = gray),
+            rect = element_rect(fill = "white", color = gray, size = 0.1),
+            text = element_text(color = gray),
+            axis.ticks = element_line(color = gray, size = 0.1),
+            legend.key = element_rect(color = NA),
+            panel.border = element_rect(color = gray),
+            panel.grid = element_blank(),
+            strip.background = element_rect(fill = "white", color = NA),
+            strip.text.x = element_text(hjust = 0, size = 10, color = gray),
+            strip.text.y = element_text(hjust = 0, size = 8, color = gray,
+                                        angle = 0),
+            legend.position="none",
+            plot.title = element_text(hjust = 0, size=14, color = "black")
+        )
+}
+```
+
+```{r}
+x1 <- runif(n = 1e2, min = 0, max = 100)
+b0 <- 2.0
+b1 <- 1.0
+eps <- rnorm(n = 1e2, mean = 0, sd = 20)
+y <- b0 + (b1 * x1) + eps
+df <- data_frame(y, x1)
+df
+```
+
+```{r}
+ggplot(df, aes(x1, y)) +
+    geom_point(alpha = 0.75, color = md500$blue_grey) +
+    theme_gr()
+```
+
+
+```{r}
+model <- lm(y ~ x1, data = df)
+summary(model)
+```
+
+```{r}
+newdata_df <- data_frame(x1 = seq(0, 100, 0.1))
+predict1 <- predict(model, newdata = newdata_df,
+                    type = "response", se.fit = TRUE)
+predicted_y <- predict1$fit
+upper1 <- predict1$fit + (1.96 * predict1$se.fit)
+lower1 <- predict1$fit - (1.96 * predict1$se.fit)
+
+color <- md700$orange
+ggplot() +
+    geom_point(aes(x = x1, y = y), color = md500$blue_grey, alpha = 0.75) +
+    geom_line(aes(x = newdata_df$x1, y = predicted_y), color = color,
+              size = 1.0, alpha = 0.9) +
+    geom_ribbon(aes(x = newdata_df$x1, ymin = lower1, ymax = upper1),
+                fill = color, alpha = 0.2) +
+    theme_gr()
+```

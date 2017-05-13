@@ -1,0 +1,86 @@
+---
+title: "Logistic regression in R using glm"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+md <- read.csv("MaterialDesign.csv", stringsAsFactors=FALSE)
+md500 <- md[6,]
+md700 <- md[8,]
+
+theme_gr <- function(base_size=12, base_family="") {
+    gray <- md500$grey
+    theme_bw(base_size = base_size, base_family = base_family) +
+        theme(
+            line = element_line(color = gray),
+            rect = element_rect(fill = "white", color = gray, size = 0.1),
+            text = element_text(color = gray),
+            axis.ticks = element_line(color = gray, size = 0.1),
+            legend.key = element_rect(color = NA),
+            panel.border = element_rect(color = gray),
+            panel.grid = element_blank(),
+            strip.background = element_rect(fill = "white", color = NA),
+            strip.text.x = element_text(hjust = 0, size = 10, color = gray),
+            strip.text.y = element_text(hjust = 0, size = 8, color = gray,
+                                        angle = 0),
+            legend.position="none",
+            plot.title = element_text(hjust = 0, size=14, color = "black")
+        )
+}
+```
+
+```{r}
+N <- 1e2
+#x1 <- rbinom(n = N, 1, 0.3)
+x1 <- runif(n = 1e2, min = 0, max = 2)
+b0 <- 0.1
+b1 <- 1.0
+
+theta <- arm::invlogit(b0 + (b1 * x1))
+y <- rep(NA, N);
+for (i in 1:N) {
+    y[i] = rbinom(1, 1, theta[i]);
+}
+df <- data_frame(y, x1)
+df
+```
+
+```{r}
+ggplot(df, aes(x1, y)) +
+    geom_point(alpha = 0.5, color = md500$blue_grey) +
+    theme_gr()
+```
+
+
+```{r}
+model <- glm(y ~ x1, data = df, family = binomial(link = "logit"))
+summary(model)
+```
+
+```{r}
+newdata_df <- data_frame(x1 = seq(0, 2, 0.01))
+predict1 <- predict(model, newdata = newdata_df,
+                    type = "response", se.fit = TRUE)
+predicted_y <- predict1$fit
+upper1 <- predict1$fit + (1.96 * predict1$se.fit)
+lower1 <- predict1$fit - (1.96 * predict1$se.fit)
+
+x_to_label <- seq(0, 2, 0.25)
+newdata_label1 <- data_frame(x1 = x_to_label)
+y_to_label1 <- predict(model, newdata = newdata_label1, type = "response")
+label1 <- round(y_to_label1, 2)
+
+color <- md700$purple
+ggplot() +
+    geom_point(aes(x = x1, y = y), color = md500$blue_grey, alpha = 0.75) +
+    geom_line(aes(x = newdata_df$x1, y = predicted_y), color = color,
+              size = 1.0, alpha = 0.9) +
+    geom_ribbon(aes(x = newdata_df$x1, ymin = lower1, ymax = upper1),
+                fill = color, alpha = 0.2) +
+    geom_point(aes(x = x_to_label, y = y_to_label1), color = color) +
+    geom_text(aes(x = x_to_label, y = y_to_label1, label = label1),
+                  nudge_y = 0.05, color = color, size = 4) +
+    theme_gr()
+```
