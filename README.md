@@ -8,4 +8,5 @@ Collection of data science work samples
 + `05_scikit_learn.md` - comparing ML classifiers in python using scikit-learn
 + `06_lm.md` - linear regression in R using lm
 + `07_glm.md` - logistic regression in R using glm
++ `08_kmeans.md` - kmeans clustering in python using scikit-learn
 + `10_poisson-gamma.md` - fitting a statistical model to data using RStan
