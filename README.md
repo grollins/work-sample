@@ -9,4 +9,5 @@ Collection of data science work samples
 + `06_lm.md` - linear regression in R using lm
 + `07_glm.md` - logistic regression in R using glm
 + `08_kmeans.md` - kmeans clustering in python using scikit-learn
++ `09_beta_binomial.md` - bayesian A/B testing model using RStan
 + `10_poisson-gamma.md` - fitting a statistical model to data using RStan
