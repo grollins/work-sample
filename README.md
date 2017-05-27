@@ -1,5 +1,5 @@
 # work-sample
-Collection of data science work samples
+Collection of SQL, R, and Python demos
 
 + [`01_mysql.md`](https://github.com/grollins/work-sample/blob/master/01_mysql.md) - basic SQL queries
 + [`02_tidyverse.md`](https://github.com/grollins/work-sample/blob/master/02_tidyverse.md) - manipulating a data set with dplyr and plotting it using ggplot2
