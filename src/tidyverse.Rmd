@@ -17,7 +17,7 @@ df <- mtcars %>%
     arrange(desc(hp)) %>%
     mutate(id = seq(1:nrow(mtcars)),
            fct_cyl = factor(cyl, levels = c(4, 6, 8)))
-head(df)
+# head(df)
 ```
 
 ```{r}
